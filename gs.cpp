@@ -131,10 +131,10 @@ int main(int argc, char* argv[]) {
     // checkTypes(F, k, u, v);
     // checkSizes(u, v);
 
-    boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name();
-    boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name();
-    boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name();
-    boost::typeindex::type_id_with_cvr<decltype(v[0][0])>().pretty_name();
+    std::cout << "Type of F: " << boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() << std::endl;
+    std::cout << "Type of k: " << boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() << std::endl;
+    std::cout << "Type of u[0][0]: " << boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name() << std::endl;
+    std::cout << "Type of v[0][0]: " << boost::typeindex::type_id_with_cvr<decltype(v[0][0])>().pretty_name() << std::endl;
 
     // Main simulation loop
     for (int iteration = 0; iteration < numIterations; ++iteration) {
