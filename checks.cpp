@@ -5,10 +5,10 @@
 #include "checks.h"
 
 void checkTypes(double F, double k, const std::vector<std::vector<double>>& u, const std::vector<std::vector<double>>& v) {
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::remove_reference<decltype(u)>::type>().pretty_name(), "Type of F does not match type of elements in u");
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::remove_reference<decltype(u)>::type>().pretty_name(), "Type of k does not match type of elements in u");
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::remove_reference<decltype(v)>::type>().pretty_name(), "Type of F does not match type of elements in v");
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::remove_reference<decltype(v)>::type>().pretty_name(), "Type of k does not match type of elements in v");
+    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::decay<decltype(u[0][0])>::type>().pretty_name(), "Type of F does not match type of elements in u");
+    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::decay<decltype(u[0][0])>::type>().pretty_name(), "Type of k does not match type of elements in u");
+    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::decay<decltype(v[0][0])>::type>().pretty_name(), "Type of F does not match type of elements in v");
+    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<std::decay<decltype(v[0][0])>::type>().pretty_name(), "Type of k does not match type of elements in v");
 }
 
 void checkSizes(const std::vector<std::vector<double>>& u, const std::vector<std::vector<double>>& v) {
