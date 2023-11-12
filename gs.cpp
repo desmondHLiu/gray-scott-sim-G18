@@ -5,8 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
-#include <boost/type_index.hpp>
-#include <boost/assert.hpp>
+#include "checks.cpp"
 #include "gs.h"
 
 // Define simulation parameters
@@ -126,13 +125,9 @@ int main(int argc, char* argv[]) {
     init();
     std::cout << "Simulation initiated." << std::endl;
 
-    // (0.1) Check that the type of the model parameters (F, k) matches that of the element type of the u and v vectors.
-    // BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of F does not match type of elements in u and v");
-    // BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of k does not match type of elements in u and v");
-
-    // (0.2) Check that the variables u and v are the same size.
-    BOOST_ASSERT_MSG(u.size() == v.size(), "u and v are not the same size");
-
+    // Call the check functions after initialization
+    checkTypes(F, k, u);
+    checkSizes(u, v);
 
     // Main simulation loop
     for (int iteration = 0; iteration < numIterations; ++iteration) {
@@ -143,32 +138,9 @@ int main(int argc, char* argv[]) {
             writeVTKFile(iteration);
         }
     }
-
-    // (0.3) Check that the simulation produces the mathematically correct answer when u = 0 and v = 0.
-    // Reset u and v to 0
-    for (auto& row : u) {
-        for (auto& element : row) {
-            element = 0.0;
-        }
-    }
-    for (auto& row : v) {
-        for (auto& element : row) {
-            element = 0.0;
-        }
-    }
-    // Run the simulation
-    simulateStep();
-    // Check the result
-    for (const auto& row : u) {
-        for (const auto& element : row) {
-            BOOST_ASSERT_MSG(element == 0.0, "Simulation does not produce correct result when u = 0");
-        }
-    }
-    for (const auto& row : v) {
-        for (const auto& element : row) {
-            BOOST_ASSERT_MSG(element == 0.0, "Simulation does not produce correct result when v = 0");
-        }
-    }
+    
+    // Call the check function after the simulation
+    checkSimulation(u, v);
 
     // count the amount of pixels above threshold at end.
     double n = countElementsAboveThreshold(threshold);
