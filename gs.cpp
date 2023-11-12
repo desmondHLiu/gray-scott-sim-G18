@@ -7,6 +7,8 @@
 #include <cmath>
 #include "checks.cpp"
 #include "gs.h"
+#include <boost/type_index.hpp>
+#include <boost/assert.hpp>
 
 // Define simulation parameters
 const int width = 256;                // Width of the grid
@@ -126,8 +128,13 @@ int main(int argc, char* argv[]) {
     std::cout << "Simulation initiated." << std::endl;
 
     // Call the check functions after initialization
-    checkTypes(F, k, u);
-    checkSizes(u, v);
+    // checkTypes(F, k, u, v);
+    // checkSizes(u, v);
+
+    boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name();
+    boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name();
+    boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name();
+    boost::typeindex::type_id_with_cvr<decltype(v[0][0])>().pretty_name();
 
     // Main simulation loop
     for (int iteration = 0; iteration < numIterations; ++iteration) {
@@ -138,7 +145,7 @@ int main(int argc, char* argv[]) {
             writeVTKFile(iteration);
         }
     }
-    
+
     // Call the check function after the simulation
     checkSimulation(u, v);
 
@@ -148,4 +155,3 @@ int main(int argc, char* argv[]) {
     
     return 0;
 }
-
