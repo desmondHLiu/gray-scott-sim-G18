@@ -20,12 +20,10 @@ jobs:
       run: cmake --build build --config Release
 
     - name: Run tests
-      run: ./build/gs 0.14 0.07 0.03 0.0648 0.1
-      
-      # |
-      #   Du=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-      #   Dv=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-      #   F=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-      #   k=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-      #   threshold=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
-      #   ./build/gs $Du $Dv $F $k $threshold
+      run: |
+        Du=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        Dv=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        F=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        k=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        threshold=$(awk -v min=0 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+        ./build/gs $Du $Dv $F $k $threshold
