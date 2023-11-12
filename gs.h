@@ -26,4 +26,4 @@ void writeVTKFile(int iteration);
 void simulateStep();
 double countElementsAboveThreshold(double threshold);
 
-#endif // GS_H
+#endif

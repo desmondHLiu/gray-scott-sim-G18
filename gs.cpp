@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
-#include "checks.cpp"
+#include "checks.h"
 #include "gs.h"
 #include <boost/type_index.hpp>
 #include <boost/assert.hpp>
