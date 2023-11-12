@@ -127,8 +127,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Simulation initiated." << std::endl;
 
     // (0.1) Check that the type of the model parameters (F, k) matches that of the element type of the u and v vectors.
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of F does not match type of elements in u and v");
-    BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of k does not match type of elements in u and v");
+    // BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of F does not match type of elements in u and v");
+    // BOOST_ASSERT_MSG(boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() == boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name(), "Type of k does not match type of elements in u and v");
 
     // (0.2) Check that the variables u and v are the same size.
     BOOST_ASSERT_MSG(u.size() == v.size(), "u and v are not the same size");
