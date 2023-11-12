@@ -7,6 +7,7 @@
 #include <cmath>
 #include <boost/type_index.hpp>
 #include <boost/assert.hpp>
+#include <gs.h>
 
 // Define simulation parameters
 const int width = 256;                // Width of the grid

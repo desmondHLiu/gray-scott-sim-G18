@@ -26,7 +26,7 @@ The program is structured into several parts:
 
 The program takes five command-line arguments: the diffusion rates of U and V, the feed rate, the kill rate, and the threshold for counting elements in the V grid. It prints the progress of the simulation to the console and writes the state of the V grid to a VTK file every 1000 iterations.
 
-./gs.cpp <Du> <Dv> <F> <k> <threshold>
+`./gs.cpp <Du> <Dv> <F> <k> <threshold>`
 
 ### Output
 
@@ -46,11 +46,11 @@ To build this application locally, you need to follow these steps:
 
 5. Compile the program using the following command:
 
-g++ -std=c++11 -o gs gs.cpp
+`g++ -std=c++11 -o gs gs.cpp`
 
 6. Run the program with the following command:
 
-./gs <Du> <Dv> <F> <k> <threshold>
+`./gs <Du> <Dv> <F> <k> <threshold>`
 
 Replace <Du>, <Dv>, <F>, <k>, and <threshold> with your desired values.
 
