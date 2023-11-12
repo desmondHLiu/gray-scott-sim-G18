@@ -128,13 +128,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Simulation initiated." << std::endl;
 
     // Call the check functions after initialization
-    // checkTypes(F, k, u, v);
-    // checkSizes(u, v);
-
-    std::cout << "Type of F: " << boost::typeindex::type_id_with_cvr<decltype(F)>().pretty_name() << std::endl;
-    std::cout << "Type of k: " << boost::typeindex::type_id_with_cvr<decltype(k)>().pretty_name() << std::endl;
-    std::cout << "Type of u[0][0]: " << boost::typeindex::type_id_with_cvr<decltype(u[0][0])>().pretty_name() << std::endl;
-    std::cout << "Type of v[0][0]: " << boost::typeindex::type_id_with_cvr<decltype(v[0][0])>().pretty_name() << std::endl;
+    checkTypes(F, k, u, v);
+    checkSizes(u, v);
 
     // Main simulation loop
     for (int iteration = 0; iteration < numIterations; ++iteration) {
@@ -147,6 +142,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Call the check function after the simulation
+    setZero();
     checkSimulation(u, v);
 
     // count the amount of pixels above threshold at end.
