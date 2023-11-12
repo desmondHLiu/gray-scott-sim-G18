@@ -21,7 +21,7 @@ if(Boost_FOUND)
 endif()
 
 # Specify source files
-set(SOURCES gs.cpp)
+set(SOURCES gs.cpp checks.cpp)
 
 # Add executable target
 add_executable(${PROJECT_NAME} ${SOURCES})
