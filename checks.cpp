@@ -18,13 +18,27 @@ void checkSizes(const std::vector<std::vector<double>>& u, const std::vector<std
 void checkSimulation(const std::vector<std::vector<double>>& u, const std::vector<std::vector<double>>& v) {
     for (const auto& row : u) {
         for (const auto& element : row) {
-            BOOST_ASSERT_MSG(abs(element - F) < 1e-9, "Simulation does not produce correct result when u = 0");
+            BOOST_ASSERT_MSG(abs(element - F * dt) < 1e-9, "Simulation does not produce correct result when u = 0");
         }
     }
     for (const auto& row : v) {
         for (const auto& element : row) {
             BOOST_ASSERT_MSG(abs(element - 0.0) < 1e-9, "Simulation does not produce correct result when v = 0");
         }
+    }
+
+    // Check the boundary elements
+    for (int x = 0; x < width; ++x) {
+        BOOST_ASSERT_MSG(u[x][0] == 0.0, "Boundary element in u is not zero");
+        BOOST_ASSERT_MSG(u[x][height - 1] == 0.0, "Boundary element in u is not zero");
+        BOOST_ASSERT_MSG(v[x][0] == 0.0, "Boundary element in v is not zero");
+        BOOST_ASSERT_MSG(v[x][height - 1] == 0.0, "Boundary element in v is not zero");
+    }
+    for (int y = 0; y < height; ++y) {
+        BOOST_ASSERT_MSG(u[0][y] == 0.0, "Boundary element in u is not zero");
+        BOOST_ASSERT_MSG(u[width - 1][y] == 0.0, "Boundary element in u is not zero");
+        BOOST_ASSERT_MSG(v[0][y] == 0.0, "Boundary element in v is not zero");
+        BOOST_ASSERT_MSG(v[width - 1][y] == 0.0, "Boundary element in v is not zero");
     }
 }
 
